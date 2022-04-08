@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Profile</title>
+    </head>
+    <body>
+        <div th:if ="${session.currentUser}!=null">
+            <p th:text="${'Login: '+ session.currentUser.login}"></p>
+            <p th:text="${'First name: '+ session.currentUser.firstName}"></p>
+            <p th:text="${'Last name: '+ session.currentUser.lastName}"></p>
+            <p th:text="${'E-mail: '+ session.currentUser.email}"></p>
+            <p th:text="${'Role: '+ session.currentUser.role}"></p>
+            <a href="/editProfile">Edit profile</a>
+        </div>
+    </body>
+</html>

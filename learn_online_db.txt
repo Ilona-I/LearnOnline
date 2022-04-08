@@ -2,6 +2,7 @@ CREATE SCHEMA `learn_online_db` ;
 
 CREATE TABLE `learn_online_db`.`user` (
   `login` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
@@ -43,6 +44,7 @@ CREATE TABLE `learn_online_db`.`possible_answer` (
 CREATE TABLE `learn_online_db`.`user_course` (
   `course_id` INT NOT NULL,
   `login` VARCHAR(45) NOT NULL,
+  `highest_mark` DOUBLE NULL,
   PRIMARY KEY (`course_id`, `login`),
   INDEX `login_idx` (`login` ASC) VISIBLE,
   CONSTRAINT `login`

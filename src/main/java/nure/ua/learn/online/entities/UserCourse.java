@@ -1,13 +1,22 @@
 package nure.ua.learn.online.entities;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@Builder
+import javax.persistence.*;
+
+@Entity
+@Table(name = "user_course")
+@Getter
+@Setter
 public class UserCourse {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private int courseId;
-    private String userLogin;
+    @Column(name = "login")
+    private String login;
+    @Column(name = "highest_mark")
     private double highestMark;
 }

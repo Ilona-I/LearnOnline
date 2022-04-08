@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Home</title>
+    </head>
+    <body>
+        <p th:if ="${session.currentUser}!=null" th:text="${'Login: '+ session.currentUser.login}"></p>
+        <a th:if ="${session.currentUser}==null" href="/logIn">Log In</a>
+        <a th:if ="${session.currentUser}==null" href="/signUp">Sign up</a>
+        <a href="/courses">Courses</a>
+        <a href="/users">Users</a>
+        <a th:if ="${session.currentUser}!=null" href="/profile">Profile</a>
+        <a th:if ="${session.currentUser}!=null" href="/passedTests">Passed tests</a>
+    </body>
+</html>
