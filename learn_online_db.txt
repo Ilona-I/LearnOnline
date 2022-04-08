@@ -1,0 +1,88 @@
+CREATE SCHEMA `learn_online_db` ;
+
+CREATE TABLE `learn_online_db`.`user` (
+  `login` VARCHAR(45) NOT NULL,
+  `first_name` VARCHAR(45) NOT NULL,
+  `last_name` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `role` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`login`),
+  UNIQUE INDEX `login_UNIQUE` (`login` ASC) VISIBLE);
+
+  CREATE TABLE `learn_online_db`.`course` (
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(45) NOT NULL,
+    `description` VARCHAR(45) NOT NULL,
+    PRIMARY KEY (`id`));
+
+CREATE TABLE `learn_online_db`.`question` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `course_id` INT NOT NULL,
+  `text` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `course-question_idx` (`course_id` ASC) VISIBLE,
+  CONSTRAINT `course-question`
+    FOREIGN KEY (`course_id`)
+    REFERENCES `learn_online_db`.`course` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+CREATE TABLE `learn_online_db`.`possible_answer` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `question_id` INT NOT NULL,
+  `text` VARCHAR(100) NOT NULL,
+  `is_true` TINYINT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `answer_question_idx` (`question_id` ASC) VISIBLE,
+  CONSTRAINT `answer_question`
+    FOREIGN KEY (`question_id`)
+    REFERENCES `learn_online_db`.`question` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+CREATE TABLE `learn_online_db`.`user_course` (
+  `course_id` INT NOT NULL,
+  `login` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`course_id`, `login`),
+  INDEX `login_idx` (`login` ASC) VISIBLE,
+  CONSTRAINT `login`
+    FOREIGN KEY (`login`)
+    REFERENCES `learn_online_db`.`user` (`login`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `course_id`
+    FOREIGN KEY (`course_id`)
+    REFERENCES `learn_online_db`.`course` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+CREATE TABLE `learn_online_db`.`chat` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `login` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `chat_idx` (`login` ASC) VISIBLE,
+  CONSTRAINT `chat`
+    FOREIGN KEY (`login`)
+    REFERENCES `learn_online_db`.`user` (`login`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+    CREATE TABLE `learn_online_db`.`message` (
+      `id` INT NOT NULL AUTO_INCREMENT,
+      `chat_id` INT NOT NULL,
+      `sender` VARCHAR(45) NOT NULL,
+      `text` VARCHAR(100) NOT NULL,
+      `datetime` DATETIME NOT NULL,
+      PRIMARY KEY (`id`),
+      INDEX `chat_message_idx` (`chat_id` ASC) VISIBLE,
+      INDEX `sender_idx` (`sender` ASC) VISIBLE,
+      CONSTRAINT `chat_message`
+        FOREIGN KEY (`chat_id`)
+        REFERENCES `learn_online_db`.`chat` (`id`)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION,
+      CONSTRAINT `sender`
+        FOREIGN KEY (`sender`)
+        REFERENCES `learn_online_db`.`user` (`login`)
+        ON DELETE NO ACTION
+        ON UPDATE CASCADE);
