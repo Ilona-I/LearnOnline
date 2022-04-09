@@ -2,7 +2,6 @@ package nure.ua.learn.online.controllers;
 
 import lombok.AllArgsConstructor;
 import nure.ua.learn.online.DataValidator;
-import nure.ua.learn.online.dto.LogInData;
 import nure.ua.learn.online.dto.SignUpData;
 import nure.ua.learn.online.entities.User;
 import nure.ua.learn.online.services.UserService;
@@ -19,6 +18,7 @@ import java.util.Map;
 public class SignUpController {
 
     private final UserService userService;
+    private final DataValidator dataValidator;
 
     @GetMapping("/signUp")
     public String getLogin() {
@@ -33,7 +33,7 @@ public class SignUpController {
             request.getSession().setAttribute("wrongLogin", "A user with this login already exists!");
             return new RedirectView("signUp");
         }
-        Map<String, String> validationErrors = DataValidator.validateData(signUpData);
+        Map<String, String> validationErrors = dataValidator.validateData(signUpData);
         if (!validationErrors.isEmpty()) {
             request.getSession().setAttribute("signUpData", signUpData);
             request.getSession().setAttribute("validationErrors", validationErrors);

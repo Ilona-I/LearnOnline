@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-
+    <h1>Chat</h1>
+    <div>
+        <div th:each="message: ${session.chatMessages}">
+            <hr>
+            <h6 th:text="${message.sender}"></h6>
+            <p th:text="${message.dateTime}"></p>
+            <p th:text="${message.text}"></p>
+            <hr>
+        </div>
+        <form th:action="@{/sendMessage}" method="post">
+            <div>
+                <input type="text" name="text"/>
+                <input type="hidden" name="chatId" th:value="${#request.getParameter('chatId')}">
+                <input type="hidden" name="receiver" th:value="${#request.getParameter('receiver')}">
+            </div>
+            <div>
+                <input type="submit" value="Send message"/>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

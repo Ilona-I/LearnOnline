@@ -5,6 +5,7 @@
         <title>Profile</title>
     </head>
     <body>
+    <h1>Profile</h1>
         <div th:if ="${session.currentUser}!=null">
             <p th:text="${'Login: '+ session.currentUser.login}"></p>
             <p th:text="${'First name: '+ session.currentUser.firstName}"></p>
@@ -12,6 +13,7 @@
             <p th:text="${'E-mail: '+ session.currentUser.email}"></p>
             <p th:text="${'Role: '+ session.currentUser.role}"></p>
             <a href="/editProfile">Edit profile</a>
+            <a href="/chatList">Chats</a>
         </div>
     </body>
 </html>

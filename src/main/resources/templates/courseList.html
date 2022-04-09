@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <h1>Courses</h1>
+        <div th:each="course: ${session.courseList}">
+            <hr>
+            <p th:text="${'Name: '+ course.name}"></p>
+            <a th:href="'/course?courseId=' + ${course.id}">Choose</a>
+            <hr>
+        </div>
+    </body>
 </html>

@@ -17,4 +17,8 @@ public class MessageService {
     public List<Message> getChatMessages(int chatId) {
         return messageRepository.findAll().stream().filter(message -> message.getChatId() == chatId).collect(Collectors.toList());
     }
+
+    public Message sendMessage(Message message){
+       return messageRepository.save(message);
+    }
 }

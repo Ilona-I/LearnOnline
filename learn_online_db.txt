@@ -61,7 +61,7 @@ CREATE TABLE `learn_online_db`.`user_course` (
 CREATE TABLE `learn_online_db`.`chat` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `login` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`, `login`),
   INDEX `chat_idx` (`login` ASC) VISIBLE,
   CONSTRAINT `chat`
     FOREIGN KEY (`login`)

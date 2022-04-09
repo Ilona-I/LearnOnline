@@ -16,7 +16,7 @@ public class SignUpData {
     private final String email;
     private final String role;
 
-    public SignUpData(HttpServletRequest request){
+    public SignUpData(HttpServletRequest request) {
         login = Objects.requireNonNull(request.getParameter("login"));
         password = Objects.requireNonNull(request.getParameter("password"));
         repeatedPassword = Objects.requireNonNull(request.getParameter("repeatedPassword"));

@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <h1>My chats</h1>
+        <div th:each="chat : ${session.userChats.entrySet()}">
+            <hr>
+            <p th:text="${'Id: '+ chat.key}"></p>
+            <div th:each="login : ${chat.value}">
+                <p th:if="${!login.equals(session.currentUser.login)}" th:text="${'Login: '+login}"></p>
+            </div>
+            <a th:href="${'/chat?chatId=' + chat.key}">Open chat</a>
+            <hr>
+        </div>
+    </body>
 </html>

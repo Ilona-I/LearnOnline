@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <h1 th:text="${'Name: '+ session.currentCourse.name}"></h1>
+        <p th:text="${'Description: '+ session.currentCourse.description}"></p>
+        <a th:href="'/userList?teacher=' + ${session.currentCourseTeacher.login}"
+           th:text="${'Course teacher: '+ session.currentCourseTeacher.firstName +' '+ session.currentCourseTeacher.lastName}"></a>
+        <a th:href="'/test?courseId=' + ${session.currentCourse.id}">Test</a>
+    </body>
 </html>

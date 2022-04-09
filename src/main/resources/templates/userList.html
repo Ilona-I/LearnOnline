@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Users</title>
+    </head>
+    <body>
+        <h1>Users</h1>
+        <div th:each="user: ${session.allUsers}">
+            <div th:if ="${!session.currentUser.login.equals(user.login)}">
+                <hr>
+                <p th:text="${'Login: '+ user.login}"></p>
+                <p th:text="${'First name: '+ user.firstName}"></p>
+                <p th:text="${'Last name: '+ user.lastName}"></p>
+                <p th:text="${'E-mail: '+ user.email}"></p>
+                <p th:text="${'Role: '+ user.role}"></p>
+                <a th:if="${user.role.equals('teacher')}" th:href="'/courseList?teacher=' + ${user.login}">Courses</a>
+                <a th:if ="${session.currentUser}!=null" th:href="'/chat?receiver=' + ${user.login}">Send message</a>
+                <hr>
+            </div>
+        </div>
+    </body>
 </html>

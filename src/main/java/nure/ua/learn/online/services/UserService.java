@@ -37,11 +37,8 @@ public class UserService {
         return Optional.of(userRepository.getById(login));
     }
 
-    public void updateUser(String login, User user) {
-        if (isUserExists(login)) {
-            if (!login.equals(user.getLogin())) {
-                userRepository.deleteById(login);
-            }
+    public void updateUser(User user) {
+        if (isUserExists(user.getLogin())) {
             userRepository.save(user);
         }
     }
