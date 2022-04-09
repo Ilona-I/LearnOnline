@@ -2,13 +2,27 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
-        <title>Title</title>
+        <title>Course</title>
     </head>
     <body>
+        <a href="/courseList">Back</a>
         <h1 th:text="${'Name: '+ session.currentCourse.name}"></h1>
         <p th:text="${'Description: '+ session.currentCourse.description}"></p>
-        <a th:href="'/userList?teacher=' + ${session.currentCourseTeacher.login}"
-           th:text="${'Course teacher: '+ session.currentCourseTeacher.firstName +' '+ session.currentCourseTeacher.lastName}"></a>
-        <a th:href="'/test?courseId=' + ${session.currentCourse.id}">Test</a>
+        <div th:if="${session.currentCourseTeacher!=null}">
+            <a th:if="${session.currentUser==null||session.currentUser.login!=session.currentCourseTeacher.login}"
+               th:href="'/userList?teacher=' + ${session.currentCourseTeacher.login}"
+               th:text="${'Course teacher: '+ session.currentCourseTeacher.firstName +' '+ session.currentCourseTeacher.lastName}"></a>
+            <div th:if="${session.currentUser!=null}">
+                <a th:href="'/test?courseId=' + ${session.currentCourse.id}">Test</a>
+                <div th:if="${session.currentUser!=null&&session.currentUser.login==session.currentCourseTeacher.login}">
+                    <a th:href="'/editCourse?courseId='+${session.currentCourse.id}">Edit course</a>
+                    <form th:action="@{/deleteCourse}" method="post">
+                        <input type="hidden" name="id" th:value="${session.currentCourse.id}">
+                        <input type="submit" value="Remove"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+
     </body>
 </html>

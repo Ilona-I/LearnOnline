@@ -14,7 +14,6 @@ import javax.persistence.*;
 public class UserCourse {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "course_id")
     private Integer courseId;
     @Id

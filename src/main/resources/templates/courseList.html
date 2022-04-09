@@ -6,6 +6,11 @@
     </head>
     <body>
         <h1>Courses</h1>
+        <div th:if="${session.currentUser!=null&&'teacher'== session.currentUser.role}">
+            <a  href="/courseList?myCourses=true">My courses</a>
+            <a href="/courseList">All courses</a>
+            <a href="/editCourse">Create course</a>
+        </div>
         <div th:each="course: ${session.courseList}">
             <hr>
             <p th:text="${'Name: '+ course.name}"></p>

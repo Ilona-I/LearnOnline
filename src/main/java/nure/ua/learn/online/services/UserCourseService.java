@@ -9,10 +9,7 @@ import nure.ua.learn.online.repositories.UserCourseRepository;
 import nure.ua.learn.online.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,49 +24,65 @@ public class UserCourseService {
         List<Course> userCourses = new ArrayList<>();
         List<Course> allCourses = courseRepository.findAll();
         for (Course course : allCourses) {
-            UserCourse userCourse = userCourseRepository.findAll()
-                    .stream().filter(userCourse1 -> userCourse1.getCourseId().equals(course.getId())).findFirst().get();
-            if (userCourse.getLogin().equals(login)) {
+            Optional<UserCourse> optionalUserCourse = userCourseRepository.findAll()
+                    .stream().filter(userCourse1 -> userCourse1.getCourseId().equals(course.getId())).findFirst();
+            if (optionalUserCourse.isPresent() && optionalUserCourse.get().getLogin().equals(login)) {
                 userCourses.add(course);
             }
         }
         return userCourses;
     }
 
-    public List<Course> getAllCourses(){
+    public List<Course> getAllCourses() {
         return courseRepository.findAll();
     }
 
-    public Map<User, List<Course>> getCourses(){
+    public Map<User, List<Course>> getCourses() {
         List<User> teachers = userRepository.findAll()
                 .stream().filter(user -> user.getRole().equals("teacher")).collect(Collectors.toList());
         Map<User, List<Course>> userCoursesMap = new HashMap<>();
-        for(User teacher:teachers){
+        for (User teacher : teachers) {
             List<Course> courses = getUserCourses(teacher.getLogin());
-            if(!courses.isEmpty()){
+            if (!courses.isEmpty()) {
                 userCoursesMap.put(teacher, courses);
             }
         }
         return userCoursesMap;
     }
 
-    public Course getCourseById(int id){
+    public Course getCourseById(int id) {
         return courseRepository.getById(id);
     }
 
-    public User getCourseTeacher(Integer courseId){
-        return userRepository.getById(userCourseRepository.findAll()
+    public User getCourseTeacher(Integer courseId) {
+        Optional<UserCourse> optionalUserCourse = userCourseRepository.findAll()
                 .stream().filter(userCourse -> courseId.equals(userCourse.getCourseId()))
-                .findFirst()
-                .get()
-                .getLogin());
+                .findFirst();
+        return optionalUserCourse.map(userCourse -> userRepository.getById(userCourse
+                .getLogin())).orElse(null);
+    }
+
+    public void addStudent(String login, int courseId) {
+        UserCourse userCourse = new UserCourse();
+        userCourse.setCourseId(courseId);
+        userCourse.setLogin(login);
+        userCourseRepository.save(userCourse);
     }
 
     public void createCourse(String login, Course course) {
+        Course c = courseRepository.save(course);
         UserCourse userCourse = new UserCourse();
-        userCourse.setCourseId(course.getId());
+        userCourse.setCourseId(c.getId());
         userCourse.setLogin(login);
+        userCourse.setHighestMark(-1);
         userCourseRepository.save(userCourse);
-        courseRepository.save(course);
+    }
+
+    public void deleteCourse(String courseId) {
+        int id = Integer.parseInt(courseId);
+        courseRepository.deleteById(id);
+        List<UserCourse> userCourses = userCourseRepository.findAll()
+                .stream().filter(userCourse -> id == userCourse.getCourseId()).collect(Collectors.toList());
+        userCourseRepository.deleteAll(userCourses);
     }
 }

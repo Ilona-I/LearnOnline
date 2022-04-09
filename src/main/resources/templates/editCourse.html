@@ -2,9 +2,25 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit course</title>
 </head>
 <body>
-
+    <h1>Edit course</h1>
+    <form th:action="@{/saveCourse}" method="post">
+        <div>
+            <input type="hidden" name="id" th:value="${session.courseForEditing!=null?session.courseForEditing.id:''}">
+            <label>Name: <input type="text" name="name" th:value="${session.courseForEditing!=null?session.courseForEditing.name:''}"/> </label>
+            <label>Description: <input type="text" name="description" th:value="${session.courseForEditing!=null?session.courseForEditing.description:''}"/> </label>
+        </div>
+        <div>
+            <input type="submit"/>
+        </div>
+    </form>
+    <div th:if="${session.courseForEditing!=null}">
+        <form th:action="@{/deleteCourse}" method="post">
+            <input type="hidden" name="id" th:value="${session.courseForEditing.id}">
+            <input type="submit" value="Remove"/>
+        </form>
+    </div>
 </body>
 </html>
