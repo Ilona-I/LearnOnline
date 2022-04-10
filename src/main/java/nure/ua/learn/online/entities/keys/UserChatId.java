@@ -3,16 +3,16 @@ package nure.ua.learn.online.entities.keys;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class ChatId implements Serializable {
+public class UserChatId implements Serializable {
 
-    private int id;
+    private int chatId;
     private String login;
 
-    public ChatId() {
+    public UserChatId() {
     }
 
-    public ChatId(int id, String login) {
-        this.id = id;
+    public UserChatId(int chatId, String login) {
+        this.chatId = chatId;
         this.login = login;
     }
 
@@ -20,12 +20,12 @@ public class ChatId implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ChatId chatId = (ChatId) o;
-        return id == chatId.id && Objects.equals(login, chatId.login);
+        UserChatId that = (UserChatId) o;
+        return chatId == that.chatId && Objects.equals(login, that.login);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login);
+        return Objects.hash(chatId, login);
     }
 }

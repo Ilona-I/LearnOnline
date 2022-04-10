@@ -60,10 +60,20 @@ CREATE TABLE `learn_online_db`.`user_course` (
 
 CREATE TABLE `learn_online_db`.`chat` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `type` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`);
+
+CREATE TABLE `learn_online_db`.`user_chat` (
+  `chat_id` INT NOT NULL,
   `login` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`, `login`),
-  INDEX `chat_idx` (`login` ASC) VISIBLE,
-  CONSTRAINT `chat`
+  PRIMARY KEY (`chat_id`, `login`),
+  INDEX `user1_idx` (`login` ASC) VISIBLE,
+  CONSTRAINT `ch`
+    FOREIGN KEY (`chat_id`)
+    REFERENCES `learn_online_db`.`chat` (`chat_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `user1`
     FOREIGN KEY (`login`)
     REFERENCES `learn_online_db`.`user` (`login`)
     ON DELETE NO ACTION

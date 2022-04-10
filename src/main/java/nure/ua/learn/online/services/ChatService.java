@@ -2,10 +2,12 @@ package nure.ua.learn.online.services;
 
 import lombok.AllArgsConstructor;
 import nure.ua.learn.online.entities.Chat;
-import nure.ua.learn.online.entities.keys.ChatId;
 import nure.ua.learn.online.entities.Message;
+import nure.ua.learn.online.entities.UserChat;
+import nure.ua.learn.online.entities.keys.UserChatId;
 import nure.ua.learn.online.repositories.ChatRepository;
 import nure.ua.learn.online.repositories.MessageRepository;
+import nure.ua.learn.online.repositories.UserChatRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,18 +21,19 @@ import java.util.stream.Collectors;
 public class ChatService {
 
     private final ChatRepository chatRepository;
+    private final UserChatRepository userChatRepository;
     private final MessageRepository messageRepository;
 
     public Map<Integer, List<String>> getUserChats(String login) {
-        List<Chat> currentUserChats = chatRepository.findAll().stream().filter(chat -> chat.getLogin().equals(login)).collect(Collectors.toList());
+        List<UserChat> currentUserChats = userChatRepository.findAll().stream().filter(userChat -> userChat.getLogin().equals(login)).collect(Collectors.toList());
         Map<Integer, List<String>> userChats = new HashMap<>();
-        for (Chat currentChat : currentUserChats) {
-            List<Chat> chats = chatRepository.findAll().stream().filter(chat -> chat.getId() == currentChat.getId()).collect(Collectors.toList());
+        for (UserChat userChat : currentUserChats) {
+            List<UserChat> chats = userChatRepository.findAll().stream().filter(chat -> chat.getChatId() == userChat.getChatId()).collect(Collectors.toList());
             List<String> logins = new ArrayList<>();
-            for (Chat chat : chats) {
+            for (UserChat chat : chats) {
                 logins.add(chat.getLogin());
             }
-            userChats.put(currentChat.getId(), logins);
+            userChats.put(userChat.getChatId(), logins);
         }
         return userChats;
     }
@@ -40,19 +43,21 @@ public class ChatService {
     }
 
     public Integer getPrivateChatId(String currentUser, String receiver) {
-        List<Chat> currentUserChats = chatRepository.findAll()
+        List<UserChat> currentUserChats = userChatRepository.findAll()
                 .stream().filter(chat -> chat.getLogin().equals(currentUser)).collect(Collectors.toList());
-        for (Chat currentChat : currentUserChats) {
-            ChatId chatId = new ChatId(currentChat.getId(), receiver);
-            if (chatRepository.existsById(chatId)) {
-                return currentChat.getId();
+        for (UserChat currentChat : currentUserChats) {
+            if (userChatRepository.existsById(new UserChatId(currentChat.getChatId(), receiver))) {
+                return currentChat.getChatId();
             }
         }
         Chat chat = new Chat();
-        chat.setLogin(currentUser);
         chat = chatRepository.save(chat);
-        chat.setLogin(receiver);
-        chatRepository.save(chat);
-        return chat.getId();
+        UserChat userChat = new UserChat();
+        userChat.setChatId(chat.getChatId());
+        userChat.setLogin(currentUser);
+        userChatRepository.save(userChat);
+        userChat.setLogin(receiver);
+        userChatRepository.save(userChat);
+        return chat.getChatId();
     }
 }

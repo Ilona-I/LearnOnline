@@ -2,19 +2,21 @@ package nure.ua.learn.online.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import nure.ua.learn.online.entities.keys.UserChatId;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "chat")
+@Table(name = "user_chat")
+@IdClass(UserChatId.class)
 @Getter
 @Setter
-public class Chat {
+public class UserChat {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "chat_id")
     private int chatId;
-    @Column(name = "type")
-    private int type;
+    @Id
+    @Column(name = "login")
+    private String login;
 }
