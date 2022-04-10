@@ -13,6 +13,6 @@
         <a href="/userList">Users</a>
         <a th:if ="${session.currentUser}!=null" href="/profile">Profile</a>
         <a th:if ="${session.currentUser}!=null" href="/chatList">Chats</a>
-        <a th:if ="${session.currentUser}!=null" href="/passedTests">Passed tests</a>
+        <a th:if ="${session.currentUser}!=null" href="/logout">Log out</a>
     </body>
 </html>

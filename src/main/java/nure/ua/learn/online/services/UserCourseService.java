@@ -24,10 +24,12 @@ public class UserCourseService {
         List<Course> userCourses = new ArrayList<>();
         List<Course> allCourses = courseRepository.findAll();
         for (Course course : allCourses) {
-            Optional<UserCourse> optionalUserCourse = userCourseRepository.findAll()
-                    .stream().filter(userCourse1 -> userCourse1.getCourseId().equals(course.getId())).findFirst();
-            if (optionalUserCourse.isPresent() && optionalUserCourse.get().getLogin().equals(login)) {
-                userCourses.add(course);
+            List<UserCourse> userCourseList = userCourseRepository.findAll()
+                    .stream().filter(userCourse1 -> userCourse1.getCourseId().equals(course.getId())).collect(Collectors.toList());
+            for (UserCourse userCourse : userCourseList) {
+                if (userCourse.getLogin().equals(login)) {
+                    userCourses.add(course);
+                }
             }
         }
         return userCourses;
@@ -56,10 +58,14 @@ public class UserCourseService {
 
     public User getCourseTeacher(Integer courseId) {
         Optional<UserCourse> optionalUserCourse = userCourseRepository.findAll()
-                .stream().filter(userCourse -> courseId.equals(userCourse.getCourseId()))
+                .stream().filter(userCourse -> courseId.equals(userCourse.getCourseId()) && "teacher".equals(userRepository.getById(userCourse.getLogin()).getRole()))
                 .findFirst();
         return optionalUserCourse.map(userCourse -> userRepository.getById(userCourse
                 .getLogin())).orElse(null);
+    }
+
+    public boolean isTeacherExists(String login) {
+        return userCourseRepository.findAll().stream().anyMatch(userCourse -> userCourse.getLogin().equals(login) && "teacher".equals(userRepository.getById(login).getRole()));
     }
 
     public void addStudent(String login, int courseId) {
@@ -74,7 +80,7 @@ public class UserCourseService {
         UserCourse userCourse = new UserCourse();
         userCourse.setCourseId(c.getId());
         userCourse.setLogin(login);
-        userCourse.setHighestMark(-1);
+        userCourse.setHighestMark(0.0);
         userCourseRepository.save(userCourse);
     }
 

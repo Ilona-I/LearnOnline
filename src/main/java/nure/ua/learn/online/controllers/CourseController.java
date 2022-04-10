@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import nure.ua.learn.online.entities.Course;
 import nure.ua.learn.online.entities.User;
 import nure.ua.learn.online.services.UserCourseService;
+import nure.ua.learn.online.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,10 +21,12 @@ public class CourseController {
     private final UserCourseService userCourseService;
 
     @GetMapping("/courseList")
-    public String getCourseList(@RequestParam(name = "myCourses", required = false) String myCourses, HttpSession session) {
+    public String getCourseList(@RequestParam(name = "myCourses", required = false) String myCourses, @RequestParam(name = "teacher", required = false) String teacher, HttpSession session) {
         User user = (User) session.getAttribute("currentUser");
         if ("true".equals(myCourses) && user != null) {
             session.setAttribute("courseList", userCourseService.getUserCourses(user.getLogin()));
+        } else if (teacher != null && userCourseService.isTeacherExists(teacher)) {
+            session.setAttribute("courseList", userCourseService.getUserCourses(teacher));
         } else {
             session.setAttribute("courseList", userCourseService.getAllCourses());
         }

@@ -32,7 +32,7 @@ CREATE TABLE `learn_online_db`.`possible_answer` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `question_id` INT NOT NULL,
   `text` VARCHAR(100) NOT NULL,
-  `is_true` TINYINT NOT NULL,
+  `mark` DOUBLE NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `answer_question_idx` (`question_id` ASC) VISIBLE,
   CONSTRAINT `answer_question`

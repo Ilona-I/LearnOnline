@@ -2,6 +2,7 @@ package nure.ua.learn.online.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import nure.ua.learn.online.entities.keys.UserCourseId;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @IdClass(UserCourseId.class)
 @Getter
 @Setter
+@ToString
 public class UserCourse {
 
     @Id
@@ -19,6 +21,6 @@ public class UserCourse {
     @Id
     @Column(name = "login")
     private String login;
-    @Column(name = "highest_mark")
-    private double highestMark;
+    @Column(name = "highest_mark", nullable = true)
+    private Double highestMark;
 }

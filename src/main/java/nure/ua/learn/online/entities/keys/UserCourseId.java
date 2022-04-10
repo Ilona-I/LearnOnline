@@ -21,7 +21,7 @@ public class UserCourseId implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserCourseId that = (UserCourseId) o;
-        return courseId == that.courseId && Objects.equals(login, that.login);
+        return Objects.equals(courseId, that.courseId) && Objects.equals(login, that.login);
     }
 
     @Override

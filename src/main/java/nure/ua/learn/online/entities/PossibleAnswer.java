@@ -19,6 +19,6 @@ public class PossibleAnswer {
     private int questionId;
     @Column(name = "text")
     private String text;
-    @Column(name = "is_true")
-    private boolean isTrue;
+    @Column(name = "mark")
+    private double mark;
 }
