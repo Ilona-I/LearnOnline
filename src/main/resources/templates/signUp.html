@@ -14,7 +14,10 @@
                 <label>First name: <input type="text" name="firstName" th:value="${session.signUpData!=null?session.signUpData.firstName:''}" /> </label>
                 <label>Last name: <input type="text" name="lastName" th:value="${session.signUpData!=null?session.signUpData.lastName:''}" /> </label>
                 <label>E-mail: <input type="email" name="email"  th:value="${session.signUpData!=null?session.signUpData.email:''}" /> </label>
-                <label>Role: <input type="role" name="role"  th:value="${session.signUpData!=null?session.signUpData.role:''}" /> </label>
+                <label>Role:
+                    <label><input type="radio" name="role" value="teacher" />Teacher</label>
+                    <label><input type="radio" name="role" value="student" />Student</label>
+                </label>
             </div>
             <div>
                 <input type="submit"/>
