@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit test</title>
+</head>
+<body>
+    <h1>Test</h1>
+
+    <form th:action="@{/editQuestion}" method="post">
+        <h4>Question</h4>
+        <input type="hidden" name="courseId" th:value="${session.currentCourse.id}">
+        <input type="hidden" name="questionId" th:value="${session.currentQuestion!=null?session.currentQuestion.id:''}"/>
+        <input type="text" name="questionText" th:value="${session.currentQuestion!=null?session.currentQuestion.text:''}"/>
+        <button type="submit">Save question</button>
+    </form>
+
+    <div th:if="${session.currentPossibleAnswers!=null}" th:each="answer:${session.currentPossibleAnswers}">
+        <form th:action="@{/editAnswer}" method="post">
+            <input type="hidden" name="questionId" th:value="${session.currentQuestion.id}">
+            <input type="hidden" name="answerId" th:value="${answer.id}">
+            <input type="text" name="text" th:value="${answer.text}">
+            <input type="number" name="mark" min="0" th:value="${answer.mark}">
+            <button type="submit">Save answer</button>
+        </form>
+        <form th:action="@{/removeAnswer}" method="post">
+            <input type="hidden" name="page" th:value="'editTest?questionId='+${session.currentQuestion.id}"/>
+            <input type="hidden" name="answerId" th:value="${answer.id}">
+            <button type="submit">Remove answer</button>
+        </form>
+    </div>
+    <div th:if="${session.currentQuestion!=null}">
+        <a th:href="'/answer?questionId='+${session.currentQuestion.id}">Add answer</a>
+    </div>
+
+</body>
+</html>

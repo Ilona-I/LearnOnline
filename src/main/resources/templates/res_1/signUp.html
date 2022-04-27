@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+    <h1>Sign up</h1>
+        <form th:action="@{/signUp}" method="post">
+            <div>
+                <label>Login: <input type="text" name="login" th:value="${session.signUpData!=null?session.signUpData.login:''}" /> </label>
+                <label>Password: <input type="password" name="password" th:value="${session.signUpData!=null?session.signUpData.password:''}" /> </label>
+                <label>Repeated password: <input type="password" name="repeatedPassword" th:value="${session.signUpData!=null?session.signUpData.repeatedPassword:''}" /> </label>
+                <label>First name: <input type="text" name="firstName" th:value="${session.signUpData!=null?session.signUpData.firstName:''}" /> </label>
+                <label>Last name: <input type="text" name="lastName" th:value="${session.signUpData!=null?session.signUpData.lastName:''}" /> </label>
+                <label>E-mail: <input type="email" name="email"  th:value="${session.signUpData!=null?session.signUpData.email:''}" /> </label>
+                <label>Role:
+                    <label><input type="radio" name="role" value="teacher" />Teacher</label>
+                    <label><input type="radio" name="role" value="student" />Student</label>
+                </label>
+            </div>
+            <div>
+                <input type="submit"/>
+            </div>
+        </form>
+    </body>
+</html>

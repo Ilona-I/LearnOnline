@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Test</h1>
+    <div th:if="${session.currentUser.login!=session.currentCourseTeacher.login}">
+        <p th:if="${session.currentTest.size()==0}">No tests</p>
+        <form th:action="@{/test}" method="post">
+            <div th:each="test : ${session.currentTest}">
+                <hr>
+                <input type="hidden" name="courseId" th:value="${test.key.courseId}"/>
+                <input type="hidden" name="question" th:value="${test.key.id}"/>
+                <h4  th:text="${test.key.text}"></h4>
+                <div th:each="answer:${test.value}">
+                    <input type="radio" th:name="'answer'+${test.key.id}" th:value="${answer.id}" th:id="${answer.id}">
+                    <label th:for="${answer.id}" th:text="${answer.text}"></label>
+                </div>
+                <hr>
+            </div>
+            <button th:if="${session.currentTest.size()>0}" type="submit">Check</button>
+        </form>
+    </div>
+    <div th:if="${session.currentUser.login==session.currentCourseTeacher.login}">
+        <div th:each="test : ${session.currentTest}">
+            <hr>
+            <h4 th:text="${test.key.text}"></h4>
+            <div th:each="answer:${test.value}">
+                <p th:text="${answer.text}+'. Mark:'+${answer.mark}"></p>
+                <form th:action="@{/removeAnswer}" method="post">
+                    <input type="hidden" name="page" th:value="'test?courseId='+${test.key.courseId}"/>
+                    <input type="hidden" name="answerId" th:value="${answer.id}">
+                    <button type="submit">Remove this answer</button>
+                </form>
+            </div>
+            <a th:href="'/editTest?questionId='+${test.key.id}">Edit test</a>
+            <form th:action="@{/removeTest}" method="post">
+                <input type="hidden" name="courseId" th:value="${test.key.courseId}"/>
+                <input type="hidden" name="questionId" th:value="${test.key.id}">
+                <button type="submit">Remove this test</button>
+            </form>
+            <hr>
+        </div>
+        <a href="/editTest">Add test</a>
+    </div>
+
+</body>
+</html>

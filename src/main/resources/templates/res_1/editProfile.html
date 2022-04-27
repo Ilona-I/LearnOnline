@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Edit profile</title>
+    </head>
+    <body>
+    <a href="/profile">Back</a>
+    <h1>Edit profile</h1>
+        <form th:action="@{/editProfile}" method="post">
+            <div>
+                <label>First name: <input type="text" name="firstName" th:value="${session.currentUser.firstName}" /> </label>
+                <label>Last name: <input type="text" name="lastName" th:value="${session.currentUser.lastName}" /> </label>
+                <label>E-mail: <input type="email" name="email" th:value="${session.currentUser.email}" /> </label>
+            </div>
+            <div>
+                <input type="submit"/>
+            </div>
+        </form>
+    </body>
+</html>
