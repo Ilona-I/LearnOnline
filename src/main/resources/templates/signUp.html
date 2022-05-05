@@ -2,26 +2,79 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
-        <title>Title</title>
+        <link rel="stylesheet" href="reg.css">
+        <title>Реєстрація</title>
     </head>
     <body>
-    <h1>Sign up</h1>
+    <header class="f1">
+        <div class="wrap-logo">
+            <a href="#logo" class="logo">LearnOnline</a>
+            <p th:if ="${session.currentUser}!=null" th:text="${'Login: '+ session.currentUser.login}"></p>
+        </div>
+        <nav class="contact">
+            <a  href="/userList">Користувачі</a>
+            <a th:if ="${session.currentUser}!=null" href="/profile">Головна</a>
+            <a th:if ="${session.currentUser}!=null" href="/chatList">Чати</a>
+            <a class="active" href="courseList.html" >Переглянути курси</a>
+            <a th:if ="${session.currentUser}==null" href="logIn.html">Вхід</a>
+            <a th:if ="${session.currentUser}==null" href="signUp.html">Реєстрація</a>
+            <a th:if ="${session.currentUser}!=null"  href="/logout">Вихід</a>
+        </nav>
+    </header>
         <form th:action="@{/signUp}" method="post">
-            <div>
-                <label>Login: <input type="text" name="login" th:value="${session.signUpData!=null?session.signUpData.login:''}" /> </label>
-                <label>Password: <input type="password" name="password" th:value="${session.signUpData!=null?session.signUpData.password:''}" /> </label>
-                <label>Repeated password: <input type="password" name="repeatedPassword" th:value="${session.signUpData!=null?session.signUpData.repeatedPassword:''}" /> </label>
-                <label>First name: <input type="text" name="firstName" th:value="${session.signUpData!=null?session.signUpData.firstName:''}" /> </label>
-                <label>Last name: <input type="text" name="lastName" th:value="${session.signUpData!=null?session.signUpData.lastName:''}" /> </label>
-                <label>E-mail: <input type="email" name="email"  th:value="${session.signUpData!=null?session.signUpData.email:''}" /> </label>
-                <label>Role:
-                    <label><input type="radio" name="role" value="teacher" />Teacher</label>
-                    <label><input type="radio" name="role" value="student" />Student</label>
-                </label>
+            <div class="curs_11"></div>
+            <div class="divform">
+                <div class="container">
+                    <div class="title-div">
+                        <h1 class="title">Реєстрація</h1>
+                    </div>
+            <div class="content">
+                <div>
+                    <h2 class="text"></h2>
+            <div class="display">
+                <div class="pole namediv">
+                <label class="pole family">Логін <input type="text" name="login" th:value="${session.signUpData!=null?session.signUpData.login:''}" /> </label>
+                <label class="pole family">Пароль <input type="password" name="password" th:value="${session.signUpData!=null?session.signUpData.password:''}" /> </label>
+                <label class="pole family">Повторіть пароль <input type="password" name="repeatedPassword" th:value="${session.signUpData!=null?session.signUpData.repeatedPassword:''}" /> </label>
+                <label class="pole family">Ім'я <input type="text" name="firstName" th:value="${session.signUpData!=null?session.signUpData.firstName:''}" /> </label>
+                <label class="pole family">Прізвище <input type="text" name="lastName" th:value="${session.signUpData!=null?session.signUpData.lastName:''}" /> </label>
+                <label class="pole family"> E-mail: <input type="email" name="email"  th:value="${session.signUpData!=null?session.signUpData.email:''}" /> </label>
+
+                    <div class="qwe">
+                    <label class="qwe1"><input type="radio" name="role" value="teacher" />Вчитель</label>
+                    <label class="qwe1"><input type="radio" name="role" value="student" />Студент</label>
+
             </div>
-            <div>
-                <input type="submit"/>
+                <pre id="log">
+</pre>
+
+                <div class="buttons">
+                    <div class="button submit">
+                        <input
+                                class="input"
+                                type="submit"
+                                value="Зареєструватись"
+                                onclick="ask(document.querySelector('.display'), document.querySelector('.title'), document.querySelector('.text'))"
+                        />
+                    </div>
+                </div>
+            </div>
+                </div>
+                </div>
+            </div>
+                 <a class="curss0" href="logIn.html">Увійти</a>
+                </div>
             </div>
         </form>
+    <div class="div_1">
+
+        <nav class="vv">
+            <a class="curss" href="#">050-432-37-84</a>
+            <a class="curss1" href="#">learnonline@gmail.com</a>
+            <a class="curss2" href="#">LearnOnline</a>
+            <a class="curss3" href="#">LearnOnline_</a>
+        </nav>
+    </div>
+    </div>
     </body>
 </html>

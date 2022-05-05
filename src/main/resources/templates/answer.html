@@ -5,6 +5,7 @@
     <title>Add answer</title>
 </head>
 <body>
+
     <form th:action="@{/editAnswer}" method="post">
         <input type="hidden" name="questionId" th:value="${session.currentQuestionId}">
         <input type="text" name="text">

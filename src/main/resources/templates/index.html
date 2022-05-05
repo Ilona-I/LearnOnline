@@ -1,18 +1,56 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8">
-        <title>Home</title>
-    </head>
-    <body>
-    <h1>Home</h1>
+<head>
+    <meta charset="UTF-8">
+    <title>Головна</title>
+    <link rel="stylesheet" href="file.css">
+</head>
+<body>
+
+<header class="f1">
+    <div class="wrap-logo">
+        <a href="#logo" class="logo">LearnOnline</a>
         <p th:if ="${session.currentUser}!=null" th:text="${'Login: '+ session.currentUser.login}"></p>
-        <a th:if ="${session.currentUser}==null" href="/logIn">Log In</a>
-        <a th:if ="${session.currentUser}==null" href="/signUp">Sign up</a>
-        <a href="/courseList">Courses</a>
-        <a href="/userList">Users</a>
-        <a th:if ="${session.currentUser}!=null" href="/profile">Profile</a>
-        <a th:if ="${session.currentUser}!=null" href="/chatList">Chats</a>
-        <a th:if ="${session.currentUser}!=null" href="/logout">Log out</a>
-    </body>
+    </div>
+    <nav class="contact">
+        <a  href="/userList">Користувачі</a>
+        <a th:if ="${session.currentUser}!=null" href="/profile">Головна</a>
+        <a th:if ="${session.currentUser}!=null" href="/chatList">Чати</a>
+        <a class="active" href="courseList.html" >Переглянути курси</a>
+        <a th:if ="${session.currentUser}==null" href="logIn.html">Вхід</a>
+        <a th:if ="${session.currentUser}==null" href="signUp.html">Реєстрація</a>
+        <a th:if ="${session.currentUser}!=null"  href="/logout">Вихід</a>
+    </nav>
+</header>
+<header class="mb-auto_2">
+    <div class="curs_4">
+        <h1 class="curs_8">Про нас</h1>
+        <p class="lead">Початковий або просунутий рівень, скласти іспит - хоч би яку мету ви переслідували, вибирайте підходящий курс, викладача, що сподобався, і починайте навчатися!</p>
+    </div>
+</header>
+
+<header class="mb-auto_3">
+    <div class="curs_5">
+        <p class="lead_1">У штаті – 489 викладачів, їхній середній стаж – 10 років. На безкоштовному пробному уроці студент та педагог знайомляться, визначають рівень та курс. При цьому обов'язково враховуються цілі та завдання студента – це може бути вільне говоріння, подорожі.
+
+            Навіть якщо людина прийшла з нульовими знаннями, тут обіцяють максимальну розмовну практику з одного заняття. Граматику репетитори пояснюють простими словами, а потім опрацьовують із учнями на життєвих прикладах.
+
+            Додатково безкоштовно – розмовні клуби, зокрема з носієм мови. Вже на безкоштовному пробному уроці педагог визначить рівень та становитиме план навчання. Воно будується на комунікативній оксфордській методиці з інтерактивними вправами. Матеріали залишаються у вільному доступі. За заняттями слідкує особистий методист, разом з ним викладач аналізує прогрес студента та може коригувати програму.
+
+            Ще є спілкування з іншими учнями у відеочаті. Є розширення для браузерів, з ними можна додавати незнайомі слова в словник інших сайтів.</p>
+    </div>
+</header>
+<div class="div_1">
+    <h4 class="curs_6">Контакти</h4>
+    <nav class="vv">
+        <a class="curss" href="#">050-432-37-84</a>
+        <a class="curss1" href="#">learnonline@gmail.com</a>
+        <a class="curss2" href="#">LearnOnline</a>
+        <a class="curss3" href="#">LearnOnline_</a>
+    </nav>
+</div>
+
+
+</div>
+</body>
 </html>

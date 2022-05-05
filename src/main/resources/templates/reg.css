@@ -1,0 +1,478 @@
+*{
+    color: #171721;
+}
+body{
+    background:url(rege.png) no-repeat;
+    width: 1600px;
+    height: 1000px;
+    background-size: 1600px 1000px;
+}
+@font-face {
+    font-family: 'Akrobat-Regular';
+    src: url('Akrobat-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-size: 22px
+}
+
+@font-face {
+    font-family: 'Georgia-Bold';
+    src: url('Georgia-Bold.ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-size: 22px
+}
+* {box-sizing: border-box;}
+
+body {
+    margin: 0;
+    font-family: 'Akrobat-Regular';
+}
+
+header {
+
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    padding: 20px 10px;
+}
+.logo{
+    color: #2A7B65;
+    padding-left: 80px;
+}
+.contact{
+    padding-right: 100px;
+}
+
+.wrap-logo {
+    display: flex;
+    align-items: center;
+    font-family: 'Georgia-Bold';
+    font-size: 25px;
+    color: #2A7B65;
+
+}
+.f1{
+    display: flex;
+}
+
+header a {
+    color: #212121;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 4px;
+}
+
+header a.logo {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+header a:hover {
+    background: #2A7B65;
+    border-radius: 20px;
+    color: #fff;
+}
+
+header a.active {
+    background: #2A7B65;
+    border-radius: 20px;
+    color: #fff;
+    border-color: #2A7B65;
+    display: inline-block;
+    font-weight: 200;
+    line-height: 2.5;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    user-select: none;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    padding: 1px 40px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    width: 100%;
+    padding-top: 50px;
+}
+
+.title-div{
+    width: 100%;
+    display: flex;
+    padding-top: 0px;
+    background: white;
+}
+
+.title{
+    margin: auto;
+    font-weight: 500;
+    font-family: 'Akrobat-Regular';
+    padding-top: 0px;
+
+}
+
+.text{
+    font-size: 40px;
+    font-weight: 500;
+
+}
+
+.curs_11{
+    padding-top: 80px;
+}
+.content{
+    text-align: center;
+    padding-top: 0px;
+    padding-bottom: 50px;
+}
+
+.divform{
+    background-color: red none;
+    padding: 100px 100px 300px -10px;
+    width: 540px;
+    margin: auto;
+    box-shadow: 4px 4px 4px 4px #A4B9B2;
+    border-radius: 0px;
+}
+
+.pole{
+    width: 400px;
+    margin: auto;
+    margin-bottom: 10px;
+    zoom: 0.70;
+    font-family: 'Akrobat-Regular';
+    color: #171721;
+
+
+}
+
+.pole p{
+    text-align: left;
+    font-size: 24px;
+    font-weight: 500;
+    font-family: 'Akrobat-Regular';
+    color: #171721;
+}
+
+input{
+    width: 100%;
+    height: 50px;
+    font-size: 24px;
+    font-weight: 300;
+    padding-left: 10px;
+    border-radius: 5px;
+    border-color: rgb(218, 216, 216);
+    border-top-color: rgb(218, 216, 216);
+}
+
+.buttons{
+    margin: 5px auto 10px auto;
+    width: 250px;
+    padding-top: 20px;
+    background: #2A7B65;
+    color: #2A7B65;
+    border-radius: 10px;
+    border-color: #2A7B65;
+    display: inline-block;
+    font-weight: 200;
+    line-height: 2.5;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    user-select: none;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    padding: 1px 40px;
+    margin-top: 20px;
+
+
+
+}
+
+.buttons input{
+
+    cursor: pointer;
+    background-color: #2A7B65;
+    border: none;
+    color: #FAFAFA;
+    text-align: left;
+    font-family: 'Akrobat-Regular';
+
+
+}
+
+.button{
+    display: inline-block;
+    width: 200px;
+    text-align: center;
+
+
+}
+
+*{
+    color: #171721;
+}
+body{
+    background:url(rege.png) no-repeat;
+    width: 1600px;
+    height: 900px;
+    background-size: 1600px 900px;
+}
+@font-face {
+    font-family: 'Akrobat-Regular';
+    src: url('Akrobat-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-size: 22px
+}
+
+@font-face {
+    font-family: 'Georgia-Bold';
+    src: url('Georgia-Bold.ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-size: 22px
+}
+.div_1{
+    position: absolute;
+    border-radius: 20px;
+    color: black;
+    font-weight: 200;
+    line-height: 2.5;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    user-select: none;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    height:20em;
+
+
+}
+.mb-auto {
+    margin-bottom:0em;
+    height:10em;
+}
+
+.curs_4{
+    width:400px;
+    margin: 85px;
+    margin-left: 350px;
+
+}
+
+.lead{
+    font-family: 'Akrobat-Regular';
+}
+.lead_1{
+    text-align: center;
+    font-family: 'Akrobat-Regular';
+
+}
+
+.curs_5{
+    width:800px;
+    float:none;
+    margin-left: 350px;
+    border-top: 2px solid #ccc; /* Параметры линии */
+    margin-top: 20px; /* Отступ слева */
+    padding-top: 60px; /* Расстояние от линии до текста */
+    border-bottom: 2px solid #ccc; /* Параметры линии */
+    margin-bottom: 20px; /* Отступ слева */
+    padding-bottom: 10px; /* Расстояние от линии до текста */
+
+}
+
+.curs_9{
+    width:800px;
+    float:none;
+    margin-left: 350px;
+}
+
+main {
+    display: block;
+}
+
+.mb-auto {
+    margin-bottom:50em;
+    height:5em;
+}
+.mb-auto_4{
+    width:320px;
+    height:180em;
+}
+
+.navcurs{
+    margin-left: 150px;
+    display: inline-block;
+    font-family: 'Georgia-Bold';
+    font-size: 32px;
+    padding: -10px;
+
+
+
+}
+.navcurs_2{
+    margin-left: 200px;
+    display: inline-block;
+    font-family: 'Akrobat-Regular';
+
+}
+.navcurs_3{
+    display: inline-block;
+    padding: 4px;
+    margin-left:-180px;
+    font-family: 'Akrobat-Regular';
+}
+.curs_8{
+    font-family: 'Akrobat-Regular';
+    font-size: 28px;
+}
+.nava {
+    font-family: 'Georgia-Bold';
+    font-size: 25px;
+    color: #2A7B65;
+}
+a{
+    text-decoration: none;
+}
+
+.mb-auto {
+    border:1px dashed black;
+    border-width:1px 0;
+    margin-bottom:2em;
+    border-width:0px 0;
+    margin-bottom:0em;
+    width:320px;
+}
+.mb-auto_2 {
+    border:1px dashed black;
+    border-width:1px 0;
+    margin-bottom:2em;
+    border-width:0px 0;
+    margin-bottom:0em;
+    width:320px;
+    height:20em;
+
+}
+.curss{
+    text-align: center;
+    margin-left: 100px;
+    background:url(tel.svg) no-repeat left center;
+    background-size: 30px;
+    display:inline-block;
+    vertical-align:bottom;
+    padding-left: 50px;
+}
+.curss1{
+    text-align: center;
+    margin-left: 100px;
+    background:url(mail.svg) no-repeat left center;
+    background-size: 30px;
+    display:inline-block;
+    vertical-align:bottom;
+    padding-left: 50px;
+}
+.curss2{
+    text-align: center;
+    margin-left: 100px;
+    background:url(facebook.svg) no-repeat left center;
+    background-size: 30px;
+    display:inline-block;
+    vertical-align:bottom;
+    padding-left: 50px;
+}
+.curss3{
+    text-align: center;
+    margin-left: 100px;
+    background:url(inst.svg) no-repeat left center;
+    background-size: 30px;
+    display:inline-block;
+    vertical-align:bottom;
+    padding-left: 50px;
+}
+
+.qwe {
+    transform:scale(0.6);
+    opacity:0.9;
+    cursor:pointer;
+    display: flex;
+    margin-top: 25px;
+    padding-left: 90px;
+}
+.qwe1{
+    font-family: Akrobat;
+    font-size: 30px;
+    text-align: end;
+    margin-top: 10px;
+
+
+}
+
+.curss0{
+    padding-left: 250px;
+
+
+}
+label {
+    margin-right: 15px;
+    line-height: 32px;
+}
+.vv{
+    margin-left: 180px;
+    padding-top: 150px;
+}
+.curs_6 {
+    text-align: center;
+    margin-left: 300px;
+}
+.mb-auto_3 {
+    width:320px;
+    height:20em;
+}
+.display{
+    width:500px;
+    float:none;
+    margin-left: 20px;
+    border-top: 2px solid #ccc; /* Параметры линии */
+    margin-top: 5px; /* Отступ слева */
+    padding-top: 40px; /* Расстояние от линии до текста */
+    border-bottom: 2px solid #ccc; /* Параметры линии */
+    margin-bottom: 5px; /* Отступ слева */
+    padding-bottom: 40px; /* Расстояние от линии до текста */
+    padding-bottom: 40px; /* Расстояние от линии до текста */
+}
+.curs_3 {
+    background: #2A7B65;
+    border-radius: 20px;
+    color: #fff;
+    border-color: #2A7B65;
+    display: inline-block;
+    font-weight: 200;
+    line-height: 2.5;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    user-select: none;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    padding: 1px 40px;
+
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.curs{
+    margin-left: 100px;
+    font-family: Akrobat;
+}

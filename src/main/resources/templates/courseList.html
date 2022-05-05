@@ -2,20 +2,56 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
-        <title>Title</title>
+        <link rel="stylesheet" href="cur.css">
+        <title>Список курсів</title>
     </head>
     <body>
-        <h1>Courses</h1>
-        <div th:if="${session.currentUser!=null&&'teacher'== session.currentUser.role}">
-            <a  href="/courseList?myCourses=true">My courses</a>
-            <a href="/courseList">All courses</a>
-            <a href="/editCourse">Create course</a>
+    <header class="f1">
+        <div class="wrap-logo">
+            <a href="#logo" class="logo">LearnOnline</a>
+            <p th:if ="${session.currentUser}!=null" th:text="${'Login: '+ session.currentUser.login}"></p>
         </div>
-        <div th:each="course: ${session.courseList}">
-            <hr>
-            <p th:text="${'Name: '+ course.name}"></p>
-            <a th:href="'/course?courseId=' + ${course.id}">Choose</a>
-            <hr>
+        <nav class="contact">
+            <a th:if ="${session.currentUser}!=null" href="/profile">Головна</a>
+            <a th:if ="${session.currentUser}!=null" href="userList.html">Користувачі</a>
+            <a class="active" href="courseList.html" >Переглянути курси</a>
+            <a th:if ="${session.currentUser}==null" href="logIn.html">Вхід</a>
+            <a th:if ="${session.currentUser}==null" href="signUp.html">Реєстрація</a>
+        </nav>
+    </header>
+        <h1 class="b">Курси</h1>
+        <div th:if="${session.currentUser!=null&&'teacher'== session.currentUser.role}" class="n">
+            <a  href="/courseList?myCourses=true">Мої курси</a>
+            <a href="/courseList" class="m">Усі курси</a>
+            <a href="/editCourse" class="m">Розробити курс</a>
         </div>
+        <div th:each="course: ${session.courseList}" class="curs_5">
+
+            <p th:text="${'Name: '+ course.name}" class="c">Курс С</p>
+            <a th:href="'/course?courseId=' + ${course.id}" class="x">Переглянути</a>
+
+        </div>
+    <div th:each="course: ${session.courseList}" class="curs_20">
+
+        <p th:text="${'Name: '+ course.name}" class="c">Курс B</p>
+        <a th:href="'/course?courseId=' + ${course.id}" class="x">Переглянути</a>
+
+    </div>
+    <div th:each="course: ${session.courseList}" class="curs_20">
+
+        <p th:text="${'Name: '+ course.name}" class="c">Курс A</p>
+        <a th:href="'/course?courseId=' + ${course.id}" class="x">Переглянути</a>
+
+    </div>
+    <div class="div_1">
+
+        <nav class="vv">
+            <a class="curss" href="#">050-432-37-84</a>
+            <a class="curss1" href="#">learnonline@gmail.com</a>
+            <a class="curss2" href="#">LearnOnline</a>
+            <a class="curss3" href="#">LearnOnline_</a>
+        </nav>
+    </div>
+    </div>
     </body>
 </html>
