@@ -1,21 +1,42 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8">
-        <title>Edit profile</title>
-    </head>
-    <body>
-    <a href="/profile">Back</a>
-    <h1>Edit profile</h1>
-        <form th:action="@{/editProfile}" method="post">
-            <div>
-                <label>First name: <input type="text" name="firstName" th:value="${session.currentUser.firstName}" /> </label>
-                <label>Last name: <input type="text" name="lastName" th:value="${session.currentUser.lastName}" /> </label>
-                <label>E-mail: <input type="email" name="email" th:value="${session.currentUser.email}" /> </label>
-            </div>
-            <div>
-                <input type="submit"/>
-            </div>
-        </form>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>Редагування профіля</title>
+    <link rel="stylesheet" href="editProfile.css">
+</head>
+<body>
+<header class="f1">
+    <div class="wrap-logo">
+        <a href="#logo" class="logo">LearnOnline</a>
+        <p th:if ="${session.currentUser}!=null" th:text="${'Login: '+ session.currentUser.login}"></p>
+    </div>
+    <nav class="contact">
+        <a  href="/userList">Користувачі</a>
+        <a th:if ="${session.currentUser}!=null" href="/profile">Головна</a>
+        <a th:if ="${session.currentUser}!=null" href="/chatList">Чати</a>
+        <a class="active" href="/courseList" >Переглянути курси</a>
+        <a th:if ="${session.currentUser}==null" href="/logIn">Вхід</a>
+        <a th:if ="${session.currentUser}==null" href="/signUp">Реєстрація</a>
+        <a th:if ="${session.currentUser}!=null"  href="/logout">Вихід</a>
+    </nav>
+</header>
+<h1 class="b">Мій профіль > Редагування</h1>
+<a href="/profile" class="n">< Мій профіль</a>
+<form th:action="@{/editProfile}" method="post">
+    <div class="curs_5">
+        <label>Ім'я: <input type="text" name="firstName" th:value="${session.currentUser.firstName}" /> </label><br>
+        <label>Прізвище: <input type="text" name="lastName" th:value="${session.currentUser.lastName}" /> </label><br>
+        <label>E-mail: <input type="email" name="email" th:value="${session.currentUser.email}" /> </label>
+    </div>
+    <div>
+        <input class="activee" type="submit" value="Зберегти"/>
+    </div>
+</form>
+</body>
+</html>
+
+
+        </div>
+</body>
 </html>

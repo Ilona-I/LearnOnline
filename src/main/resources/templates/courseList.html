@@ -22,7 +22,7 @@
         <h1 class="b">Курси</h1>
         <div th:if="${session.currentUser!=null&&'teacher'== session.currentUser.role}" class="n">
             <a  href="/courseList?myCourses=true">Мої курси</a>
-            <a href="/courseList" class="m">Усі курси</a>
+            <a href="courseList.html" class="m">Усі курси</a>
             <a href="/editCourse" class="m">Розробити курс</a>
         </div>
         <div th:each="course: ${session.courseList}" class="curs_5">

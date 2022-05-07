@@ -1,19 +1,38 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8">
-        <title>Title</title>
-    </head>
-    <body>
-        <h1>My chats</h1>
-        <div th:each="chat : ${session.userChats.entrySet()}">
-            <hr>
-            <p th:text="${'Id: '+ chat.key}"></p>
-            <div th:each="login : ${chat.value}">
-                <p th:if="${!login.equals(session.currentUser.login)}" th:text="${'Login: '+login}"></p>
-            </div>
-            <a th:href="${'/chat?chatId=' + chat.key}">Open chat</a>
-            <hr>
-        </div>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="editProfile.css">
+    <title>Мої чати</title>
+</head>
+<body>
+
+<header class="f1">
+    <div class="wrap-logo">
+        <a href="#logo" class="logo">LearnOnline</a>
+        <p th:if ="${session.currentUser}!=null" th:text="${'Login: '+ session.currentUser.login}"></p>
+    </div>
+    <nav class="contact">
+        <a  href="/userList">Користувачі</a>
+        <a th:if ="${session.currentUser}!=null" href="/profile">Головна</a>
+        <a th:if ="${session.currentUser}!=null" href="/chatList">Чати</a>
+        <a class="active" href="/courseList" >Переглянути курси</a>
+        <a th:if ="${session.currentUser}==null" href="/profile">Мій профіль</a>
+        <a th:if ="${session.currentUser}!=null"  href="/logout">Вихід</a>
+    </nav>
+</header>
+<h1 class="b">Мій профіль > Мої чати</h1>
+<a href="/profile" class="n">< Мій пофіль</a>
+
+<div class="curs_5" th:each="chat : ${session.userChats.entrySet()}">
+    <p th:text="${'Id: '+ chat.key}"></p>
+    <div th:each="login : ${chat.value}">
+        <p th:if="${!login.equals(session.currentUser.login)}" th:text="${'Login: '+login}"></p>
+    </div>
+    <a class="activ" th:href="${'/chat?chatId=' + chat.key}">Перейти до чату</a>
+
+
+</div>
+
+</body>
 </html>

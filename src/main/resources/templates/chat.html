@@ -2,26 +2,41 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Чати</title>
+    <link rel="stylesheet" href="editProfile.css">
 </head>
 <body>
-    <h1>Chat</h1>
-    <div>
+<header class="f1">
+    <div class="wrap-logo">
+        <a href="#logo" class="logo">LearnOnline</a>
+        <p th:if ="${session.currentUser}!=null" th:text="${'Login: '+ session.currentUser.login}"></p>
+    </div>
+    <nav class="contact">
+        <a  href="/userList">Користувачі</a>
+        <a th:if ="${session.currentUser}!=null" href="/profile">Головна</a>
+        <a th:if ="${session.currentUser}!=null" href="/chatList">Чати</a>
+        <a class="active" href="/courseList" >Переглянути курси</a>
+        <a th:if ="${session.currentUser}==null" href="/profile">Мій профіль</a>
+        <a th:if ="${session.currentUser}!=null"  href="/logout">Вихід</a>
+    </nav>
+</header>
+<h1 class="b">Мій профіль > Мої чати</h1>
+<a href="/chatList" class="n">< Мої чати</a>
+    <div class="curs_5">
         <div th:each="message: ${session.chatMessages}">
-            <hr>
             <h6 th:text="${message.sender}"></h6>
             <p th:text="${message.dateTime}"></p>
             <p th:text="${message.text}"></p>
-            <hr>
         </div>
+    </div>
         <form th:action="@{/sendMessage}" method="post">
             <div>
-                <input type="text" name="text"/>
+                <input class="curs_6" type="text" name="text"/>
                 <input type="hidden" name="chatId" th:value="${#request.getParameter('chatId')}">
                 <input type="hidden" name="receiver" th:value="${#request.getParameter('receiver')}">
             </div>
             <div>
-                <input type="submit" value="Send message"/>
+                <input class="activee" type="submit" value="Надіслати"/>
             </div>
         </form>
     </div>

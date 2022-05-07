@@ -1,29 +1,64 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
+        <link rel="stylesheet" href="сur.css">
         <meta charset="UTF-8">
-        <title>Course</title>
+        <title>Перегляд курсу</title>
     </head>
     <body>
-        <a href="/courseList">Back</a>
-        <h1 th:text="${'Name: '+ session.currentCourse.name}"></h1>
-        <p th:text="${'Description: '+ session.currentCourse.description}"></p>
-        <div th:if="${session.currentCourseTeacher!=null}">
-            <a th:if="${session.currentUser==null||session.currentUser.login!=session.currentCourseTeacher.login}"
-               th:href="'/userList?teacher=' + ${session.currentCourseTeacher.login}"
-               th:text="${'Course teacher: '+ session.currentCourseTeacher.firstName +' '+ session.currentCourseTeacher.lastName}"></a>
+    <header class="f1">
+        <div class="wrap-logo">
+            <a href="#logo" class="logo">LearnOnline</a>
+        </div>
+        <nav class="contact">
 
-            <div th:if="${session.currentUser!=null}">
-                <a th:if="${session.currentUser.login==session.currentCourseTeacher.login||session.currentUser.role=='student'}" th:href="'/test?courseId=' + ${session.currentCourse.id}">Test</a>
-                <div th:if="${session.currentUser.login==session.currentCourseTeacher.login}">
-                    <a th:href="'/editCourse?courseId='+${session.currentCourse.id}">Edit course</a>
-                    <form th:action="@{/deleteCourse}" method="post">
-                        <input type="hidden" name="id" th:value="${session.currentCourse.id}">
-                        <input type="submit" value="Remove"/>
-                    </form>
-                </div>
+            <a th:if ="${session.currentUser}!=null" href="/profilel">Головна</a>
+            <a  href="userList.html">Користувачі</a>
+            <a th:if ="${session.currentUser}!=null" href="/chatList">Чати</a>
+            <a class="active" href="/courseList" >Переглянути курси</a>
+            <a th:if ="${session.currentUser}==null" href="/logIn">Вхід</a>
+            <a th:if ="${session.currentUser}==null" href="/signUp">Реєстрація</a>
+        </nav>
+    </header>
+    <a href="/courseList" class="n">Мої курси</a>
+    <div class="curs_5">
+
+    <h1 th:text="${'Назва: '+ session.currentCourse.name}"></h1>
+    <p th:text="${'Опис: '+ session.currentCourse.description}"></p>
+    </div>
+    <div th:if="${session.currentCourseTeacher!=null}">
+        <a th:if="${session.currentUser==null||session.currentUser.login!=session.currentCourseTeacher.login}"
+           th:href="'/userList?teacher=' + ${session.currentCourseTeacher.login}"
+           th:text="${'Course teacher: '+ session.currentCourseTeacher.firstName +' '+ session.currentCourseTeacher.lastName}"></a>
+
+    </div>
+        <nav class="contact">
+        <div th:if="${session.currentUser!=null}">
+            <a class="teste" th:if="${session.currentUser.login==session.currentCourseTeacher.login||session.currentUser.role=='student'}" th:href="'/test?courseId=' + ${session.currentCourse.id}">Тест</a>
+            <div th:if="${session.currentUser.login==session.currentCourseTeacher.login}">
+                <a th:href="'/editCourse?courseId='+${session.currentCourse.id}" class="actv">Редагувати курс</a>
+                <form th:action="@{/deleteCourse}" method="post">
+                    <input type="hidden" name="id" th:value="${session.currentCourse.id}">
+                    <input class="activee" type="submit" value="Видалити"/>
+                </form>
             </div>
         </div>
+    </nav>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
     </body>
 </html>

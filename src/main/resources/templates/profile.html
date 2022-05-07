@@ -2,18 +2,57 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
-        <title>Profile</title>
+        <link rel="stylesheet" href="prof.css">
+        <title>Мій профіль</title>
     </head>
     <body>
-    <h1>Profile</h1>
-        <div th:if ="${session.currentUser}!=null">
-            <p th:text="${'Login: '+ session.currentUser.login}"></p>
-            <p th:text="${'First name: '+ session.currentUser.firstName}"></p>
-            <p th:text="${'Last name: '+ session.currentUser.lastName}"></p>
-            <p th:text="${'E-mail: '+ session.currentUser.email}"></p>
-            <p th:text="${'Role: '+ session.currentUser.role}"></p>
-            <a href="/editProfile">Edit profile</a>
-            <a href="/chatList">Chats</a>
+
+    <header class="f1">
+        <div class="wrap-logo">
+            <a href="#logo" class="logo">LearnOnline</a>
+            <p th:if ="${session.currentUser}!=null" th:text="${'Login: '+ session.currentUser.login}"></p>
         </div>
+        <nav class="contact">
+
+            <a th:if ="${session.currentUser}!=null" href="/profile">Головна</a>
+            <a  href="/userList">Користувачі</a>
+            <a class="active" href="/courseList" >Переглянути курси</a>
+            <a href="/profile" >Мій профіль</a>
+            <a th:if ="${session.currentUser}!=null" href="/chatList">Чати</a>
+            <a th:if ="${session.currentUser}!=null"  href="/logout">Вихід</a>
+        </nav>
+
+    </header>
+
     </body>
+    <h1 class="b">Мій профіль</h1>
+    <div th:if="${session.currentUser!=null&&'teacher'== session.currentUser.role}" class="n">
+        <a  href="/chatList">Мої чати</a>
+    </div>
+    <div th:each="course: ${session.courseList}" class="curs_5">
+        <nav class="contact">
+            <div th:if ="${session.currentUser}!=null" class="c">
+                <p th:text="${'Login: '+ session.currentUser.login}">Логін:</p>
+                <p th:text="${'First name: '+ session.currentUser.firstName}">Ім'я:</p>
+                <p th:text="${'Last name: '+ session.currentUser.lastName}">Прізвище:</p>
+                <p th:text="${'E-mail: '+ session.currentUser.email}">E-mail:</p>
+                <p th:text="${'Role: '+ session.currentUser.role}">Роль:</p>
+    </div>
+    </nav>
+
+    <div class="div_1">
+
+
+    </div>
+    </div>
+    <a href="editProfile.html" class="activee">Редагувати профіль</a>
+    <div class="div_1">
+
+    <nav class="vv">
+        <a class="curss" href="#">050-432-37-84</a>
+        <a class="curss1" href="#">learnonline@gmail.com</a>
+        <a class="curss2" href="#">LearnOnline</a>
+        <a class="curss3" href="#">LearnOnline_</a>
+    </nav>
+    </div>
 </html>

@@ -2,25 +2,77 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Edit course</title>
+    <link rel="stylesheet" href="edit.css">
+    <title>Редагувати курс</title>
 </head>
 <body>
-    <h1>Edit course</h1>
-    <form th:action="@{/saveCourse}" method="post">
-        <div>
-            <input type="hidden" name="id" th:value="${session.courseForEditing!=null?session.courseForEditing.id:''}">
-            <label>Name: <input type="text" name="name" th:value="${session.courseForEditing!=null?session.courseForEditing.name:''}"/> </label>
-            <label>Description: <input type="text" name="description" th:value="${session.courseForEditing!=null?session.courseForEditing.description:''}"/> </label>
-        </div>
-        <div>
-            <input type="submit"/>
-        </div>
-    </form>
-    <div th:if="${session.courseForEditing!=null}">
-        <form th:action="@{/deleteCourse}" method="post">
-            <input type="hidden" name="id" th:value="${session.courseForEditing.id}">
-            <input type="submit" value="Remove"/>
-        </form>
+<header class="f1">
+    <div class="wrap-logo">
+        <a href="#logo" class="logo">LearnOnline</a>
     </div>
+    <nav class="contact">
+
+        <a th:if ="${session.currentUser}!=null" href="/profilel">Головна</a>
+        <a  href="userList.html">Користувачі</a>
+        <a th:if ="${session.currentUser}!=null" href="/chatList">Чати</a>
+        <a class="active" href="/courseList" >Переглянути курси</a>
+        <a th:if ="${session.currentUser}==null" href="/logIn">Вхід</a>
+        <a th:if ="${session.currentUser}==null" href="/signUp">Реєстрація</a>
+    </nav>
+</header>
+<form th:action="@{/saveCourse}" method="post">
+    <h1 class="b">Курси > Розробити / Редагувати</h1>
+
+        <a  href="/courseList?myCourses=true" class="b">Мої курси</a>
+        <a href="/courseList" class="m" class="b">Усі курси</a>
+    </div>
+    <div th:each="course: ${session.courseList}" class="curs_5">
+    <div>
+        <input type="hidden" name="id" th:value="${session.courseForEditing!=null?session.courseForEditing.id:''}">
+        <div class="divform">
+            <div class="container">
+                <div class="title-div">
+        <label>Назва: <input type="text" name="name" th:value="${session.courseForEditing!=null?session.courseForEditing.name:''}"/></label>
+                </div>
+            </div>
+        </div>
+                    <div class="divform">
+                        <div class="container">
+                            <div class="title-div">
+        <label>Опис: <input type="text" name="description" th:value="${session.courseForEditing!=null?session.courseForEditing.description:''}"/> </label>
+                            </div>
+                        </div>
+                    </div>
+    </div>
+
+    </div>
+</form>
+
+
+
+
+</form>
+<div th:if="${session.courseForEditing!=null}">
+    <form th:action="@{/deleteCourse}" method="post">
+        <input class="activess" type="submit" value="Надіслати курс"/>
+        <input type="hidden" name="id" th:value="${session.courseForEditing.id}">
+        <input class="activee" type="submit" value="Видалити"/>
+    </form>
+
+
+    </form>
+</div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
