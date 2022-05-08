@@ -8,7 +8,7 @@
 <body>
 <header class="f1">
     <div class="wrap-logo">
-        <a href="#logo" class="logo">LearnOnline</a>
+        <a href="/index" class="logo">LearnOnline</a>
     </div>
     <nav class="contact">
 
@@ -24,9 +24,8 @@
 
     <a  href="/courseList?myCourses=true" class="b">Мої курси</a>
     <a href="/courseList" class="m" class="b">Усі курси</a>
-    </div>
+
     <div th:each="course: ${session.courseList}" class="curs_5">
-        <div>
 
 
         <div th:if="${session.currentUser.login!=session.currentCourseTeacher.login}">
@@ -43,6 +42,10 @@
             </div>
             <button class="activeee" th:if="${session.currentTest.size()>0}" type="submit">Обрати</button>
         </form>
+        </div>
+        </div>
+</form>
+
     </div>
     <div th:if="${session.currentUser.login==session.currentCourseTeacher.login}">
         <div th:each="test : ${session.currentTest}">
