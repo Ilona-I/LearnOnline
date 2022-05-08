@@ -11,9 +11,8 @@
         <a href="/index" class="logo">LearnOnline</a>
     </div>
     <nav class="contact">
-
-        <a th:if ="${session.currentUser}!=null" href="/profilel">Головна</a>
-        <a  href="userList.html">Користувачі</a>
+        <a  href="/userList">Користувачі</a>
+        <a th:if ="${session.currentUser}!=null" href="/index">Головна</a>
         <a th:if ="${session.currentUser}!=null" href="/chatList">Чати</a>
         <a class="active" href="/courseList" >Переглянути курси</a>
         <a th:if ="${session.currentUser}==null" href="/logIn">Вхід</a>

@@ -17,6 +17,15 @@ body{
     font-size: 22px
 }
 
+
+.tec{
+    margin-top:50px;
+    margin-left:210px;
+    font-family: 'Akrobat-Regular';
+}
+
+
+
 @font-face {
     font-family: 'Georgia-Bold';
     src: url('Georgia-Bold.ttf');

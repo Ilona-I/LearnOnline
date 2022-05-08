@@ -11,9 +11,8 @@
             <a href="/index" class="logo">LearnOnline</a>
         </div>
         <nav class="contact">
-
-            <a th:if ="${session.currentUser}!=null" href="/profilel">Головна</a>
-            <a  href="userList.html">Користувачі</a>
+            <a  href="/userList">Користувачі</a>
+            <a th:if ="${session.currentUser}!=null" href="/index">Головна</a>
             <a th:if ="${session.currentUser}!=null" href="/chatList">Чати</a>
             <a class="active" href="/courseList" >Переглянути курси</a>
             <a th:if ="${session.currentUser}==null" href="/logIn">Вхід</a>
@@ -28,9 +27,9 @@
     <p th:text="${'Опис: '+ session.currentCourse.description}"></p>
     </div>
     <div th:if="${session.currentCourseTeacher!=null}">
-        <a th:if="${session.currentUser==null||session.currentUser.login!=session.currentCourseTeacher.login}"
+        <a class="tec" th:if="${session.currentUser==null||session.currentUser.login!=session.currentCourseTeacher.login}"
            th:href="'/userList?teacher=' + ${session.currentCourseTeacher.login}"
-           th:text="${'Course teacher: '+ session.currentCourseTeacher.firstName +' '+ session.currentCourseTeacher.lastName}"></a>
+           th:text="${'Вчитель курсу: '+ session.currentCourseTeacher.firstName +' '+ session.currentCourseTeacher.lastName}"></a>
 
     </div>
         <nav class="contact">
