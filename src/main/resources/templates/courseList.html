@@ -13,16 +13,16 @@
         </div>
         <nav class="contact">
             <a th:if ="${session.currentUser}!=null" href="/profile">Головна</a>
-            <a th:if ="${session.currentUser}!=null" href="userList.html">Користувачі</a>
-            <a class="active" href="courseList.html" >Переглянути курси</a>
-            <a th:if ="${session.currentUser}==null" href="logIn.html">Вхід</a>
-            <a th:if ="${session.currentUser}==null" href="signUp.html">Реєстрація</a>
+            <a th:if ="${session.currentUser}!=null" href="/userList">Користувачі</a>
+            <a class="active" href="/courseList" >Переглянути курси</a>
+            <a th:if ="${session.currentUser}==null" href="/logIn">Вхід</a>
+            <a th:if ="${session.currentUser}==null" href="/signUp">Реєстрація</a>
         </nav>
     </header>
         <h1 class="b">Курси</h1>
         <div th:if="${session.currentUser!=null&&'teacher'== session.currentUser.role}" class="n">
             <a  href="/courseList?myCourses=true">Мої курси</a>
-            <a href="courseList.html" class="m">Усі курси</a>
+            <a href="/courseList" class="m">Усі курси</a>
             <a href="/editCourse" class="m">Розробити курс</a>
         </div>
         <div th:each="course: ${session.courseList}" class="curs_5">
