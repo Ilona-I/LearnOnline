@@ -25,18 +25,7 @@
             <a href="/courseList" class="m">Усі курси</a>
             <a href="/editCourse" class="m">Розробити курс</a>
         </div>
-        <div th:each="course: ${session.courseList}" class="curs_5">
 
-            <p th:text="${'Name: '+ course.name}" class="c">Курс С</p>
-            <a th:href="'/course?courseId=' + ${course.id}" class="x">Переглянути</a>
-
-        </div>
-    <div th:each="course: ${session.courseList}" class="curs_20">
-
-        <p th:text="${'Name: '+ course.name}" class="c">Курс B</p>
-        <a th:href="'/course?courseId=' + ${course.id}" class="x">Переглянути</a>
-
-    </div>
     <div th:each="course: ${session.courseList}" class="curs_20">
 
         <p th:text="${'Name: '+ course.name}" class="c">Курс A</p>
