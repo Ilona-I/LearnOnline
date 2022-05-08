@@ -16,7 +16,6 @@
         <a th:if ="${session.currentUser}!=null" href="/profile">Головна</a>
         <a th:if ="${session.currentUser}!=null" href="/chatList">Чати</a>
         <a class="active" href="/courseList" >Переглянути курси</a>
-        <a th:if ="${session.currentUser}==null" href="/logIn">Вхід</a>
         <a th:if ="${session.currentUser}==null" href="/signUp">Реєстрація</a>
         <a th:if ="${session.currentUser}!=null"  href="/logout">Вихід</a>
     </nav>
