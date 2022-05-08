@@ -24,12 +24,11 @@
 
     </header>
 
-    </body>
+
     <h1 class="b">Мій профіль</h1>
     <div th:if="${session.currentUser!=null&&'teacher'== session.currentUser.role}" class="n">
         <a  href="/chatList">Мої чати</a>
     </div>
-    <div th:each="course: ${session.courseList}" class="curs_5">
         <nav class="contact">
             <div th:if ="${session.currentUser}!=null" class="c">
                 <p th:text="${'Login: '+ session.currentUser.login}">Логін:</p>
@@ -55,4 +54,5 @@
         <a class="curss3" href="#">LearnOnline_</a>
     </nav>
     </div>
+    </body>
 </html>
