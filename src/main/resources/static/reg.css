@@ -9,7 +9,7 @@ body{
 }
 @font-face {
     font-family: 'Akrobat-Regular';
-    src: url('Akrobat-Regular.ttf');
+    src: url('static/Akrobat-Regular.ttf');
     font-weight: normal;
     font-style: normal;
     font-size: 22px
@@ -207,7 +207,7 @@ input{
     background-color: #2A7B65;
     border: none;
     color: #FAFAFA;
-    text-align: center;
+    text-align: left;
     font-family: 'Akrobat-Regular';
 
 
@@ -215,7 +215,7 @@ input{
 
 .button{
     display: inline-block;
-    width: 150px;
+    width: 200px;
     text-align: center;
 
 
@@ -232,7 +232,7 @@ body{
 }
 @font-face {
     font-family: 'Akrobat-Regular';
-    src: url('Akrobat-Regular.ttf');
+    src: url('static/Akrobat-Regular.ttf');
     font-weight: normal;
     font-style: normal;
     font-size: 22px
@@ -422,7 +422,7 @@ a{
 }
 
 .curss0{
-    padding-left: 220px;
+    padding-left: 250px;
 
 
 }
