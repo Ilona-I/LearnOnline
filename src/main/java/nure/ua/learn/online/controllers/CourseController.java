@@ -46,6 +46,8 @@ public class CourseController {
         if (courseId != null) {
             Course course = userCourseService.getCourseById(Integer.parseInt(courseId));
             session.setAttribute("courseForEditing", course);
+        } else {
+            session.removeAttribute("courseForEditing");
         }
         return "editCourse";
     }

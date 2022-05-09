@@ -11,11 +11,11 @@
         <a href="/index" class="logo">LearnOnline</a>
     </div>
     <nav class="contact">
-        <a  href="/userList">Користувачі</a>
-        <a  href="/profile" >Мій профіль</a>
-        <a th:if ="${session.currentUser}!=null" href="/index">Головна</a>
-        <a th:if ="${session.currentUser}!=null" href="/chatList">Чати</a>
+        <a href="/index">Головна</a>
+        <a href="/userList">Користувачі</a>
         <a class="active" href="/courseList" >Переглянути курси</a>
+        <a th:if ="${session.currentUser}!=null"  href="/profile" >Мій профіль</a>
+        <a th:if ="${session.currentUser}!=null" href="/chatList">Чати</a>
         <a th:if ="${session.currentUser}==null" href="/logIn">Вхід</a>
         <a th:if ="${session.currentUser}==null" href="/signUp">Реєстрація</a>
         <a th:if ="${session.currentUser}!=null"  href="/logout">Вихід</a>
@@ -41,7 +41,7 @@
                 <input type="hidden" name="questionId" th:value="${session.currentQuestion.id}">
                 <input type="hidden" name="answerId" th:value="${answer.id}">
                 <input class="f" type="text" name="text" th:value="${answer.text}"><br>
-                <label>Оцінка: <input class="ff" type="number" name="mark" min="0" th:value="${answer.mark}"</label>
+                <label>Оцінка: <input class="ff" type="number" name="mark" min="0" th:value="${answer.mark}"/></label>
 
 
                 <button type="submit" class="acv">Зберегти відповідь</button>

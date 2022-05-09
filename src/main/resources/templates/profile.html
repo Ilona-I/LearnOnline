@@ -6,26 +6,23 @@
         <title>Мій профіль</title>
     </head>
     <body>
-
     <header class="f1">
         <div class="wrap-logo">
             <a href="/index" class="logo">LearnOnline</a>
             <p th:if ="${session.currentUser}!=null" th:text="${'Login: '+ session.currentUser.login}"></p>
         </div>
         <nav class="contact">
-            <a  href="/userList">Користувачі</a>
-            <a  href="/profile" >Мій профіль</a>
-            <a th:if ="${session.currentUser}!=null" href="/index">Головна</a>
-            <a th:if ="${session.currentUser}!=null" href="/chatList">Чати</a>
+            <a href="/index">Головна</a>
+            <a href="/userList">Користувачі</a>
             <a class="active" href="/courseList" >Переглянути курси</a>
+            <a th:if ="${session.currentUser}!=null"  href="/profile" >Мій профіль</a>
+            <a th:if ="${session.currentUser}!=null" href="/chatList">Чати</a>
             <a th:if ="${session.currentUser}==null" href="/logIn">Вхід</a>
             <a th:if ="${session.currentUser}==null" href="/signUp">Реєстрація</a>
             <a th:if ="${session.currentUser}!=null"  href="/logout">Вихід</a>
         </nav>
 
     </header>
-
-
     <h1 class="b">Мій профіль</h1>
     <div th:if="${session.currentUser!=null&&'teacher'== session.currentUser.role}" class="n">
         <a  href="/chatList">Мої чати</a>
@@ -39,15 +36,10 @@
                 <p th:text="${'Role: '+ session.currentUser.role}">Роль:</p>
     </div>
     </nav>
-
     <div class="div_1">
-
-
     </div>
-    </div>
-    <a href="editProfile.html" class="activee">Редагувати профіль</a>
+    <a href="/editProfile" class="activee">Редагувати профіль</a>
     <div class="div_1">
-
     <nav class="vv">
         <a class="curss" href="#">050-432-37-84</a>
         <a class="curss1" href="#">learnonline@gmail.com</a>

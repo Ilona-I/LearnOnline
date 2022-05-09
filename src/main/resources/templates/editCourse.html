@@ -11,56 +11,46 @@
         <a href="/index" class="logo">LearnOnline</a>
     </div>
     <nav class="contact">
-        <a  href="/userList">Користувачі</a>
-        <a  href="/profile" >Мій профіль</a>
-        <a th:if ="${session.currentUser}!=null" href="/index">Головна</a>
-        <a th:if ="${session.currentUser}!=null" href="/chatList">Чати</a>
+        <a href="/index">Головна</a>
+        <a href="/userList">Користувачі</a>
         <a class="active" href="/courseList" >Переглянути курси</a>
+        <a th:if ="${session.currentUser}!=null"  href="/profile" >Мій профіль</a>
+        <a th:if ="${session.currentUser}!=null" href="/chatList">Чати</a>
         <a th:if ="${session.currentUser}==null" href="/logIn">Вхід</a>
         <a th:if ="${session.currentUser}==null" href="/signUp">Реєстрація</a>
         <a th:if ="${session.currentUser}!=null"  href="/logout">Вихід</a>
     </nav>
 </header>
-<form th:action="@{/saveCourse}" method="post">
     <h1 class="b">Курси > Розробити / Редагувати</h1>
-
-        <a  href="/courseList?myCourses=true" class="b">Мої курси</a>
-        <a href="/courseList" class="m" class="b">Усі курси</a>
-    </div>
-    <div th:each="course: ${session.courseList}" class="curs_5">
-    <div>
-        <input type="hidden" name="id" th:value="${session.courseForEditing!=null?session.courseForEditing.id:''}">
-        <div class="divform">
-            <div class="container">
-                <div class="title-div">
-        <label>Назва: <input type="text" name="name" th:value="${session.courseForEditing!=null?session.courseForEditing.name:''}"/></label>
+    <a  href="/courseList?myCourses=true" class="b">Мої курси</a>
+    <a href="/courseList" class="m b">Усі курси</a>
+<br>
+    <form th:action="@{/saveCourse}" method="post">
+        <div style="margin-left: 300px; margin-top: 50px; ">
+            <input type="hidden" name="id" th:value="${session.courseForEditing!=null?session.courseForEditing.id:''}">
+            <div class="divform">
+                <div class="container">
+                    <div class="title-div">
+                        <label>Назва: <input type="text" name="name" th:value="${session.courseForEditing!=null?session.courseForEditing.name:''}"/></label>
+                    </div>
+                </div>
+            </div>
+            <div class="divform">
+                <div class="container">
+                    <div class="title-div">
+                        <label>Опис: <textarea cols="40" rows="5" name="description" th:text="${session.courseForEditing!=null?session.courseForEditing.description:''}"></textarea> </label>
+                    </div>
                 </div>
             </div>
         </div>
-                    <div class="divform">
-                        <div class="container">
-                            <div class="title-div">
-        <label>Опис: <input type="text" name="description" th:value="${session.courseForEditing!=null?session.courseForEditing.description:''}"/> </label>
-                            </div>
-                        </div>
-                    </div>
-    </div>
-
-    </div>
-</form>
-
-
-
-
-</form>
-<div th:if="${session.courseForEditing!=null}">
-    <form th:action="@{/deleteCourse}" method="post">
-        <input class="activess" type="submit" value="Надіслати курс"/>
-        <input type="hidden" name="id" th:value="${session.courseForEditing.id}">
-        <input class="activee" type="submit" value="Видалити"/>
+        <br>
+        <input class="activess" type="submit" value="Зберегти"/>
     </form>
 
-
+<div th:if="${session.courseForEditing!=null}">
+    <form th:action="@{/deleteCourse}" method="post">
+        <input type="hidden" name="id" th:value="${session.courseForEditing.id}">
+        <input class="activee" style="margin-left: 190px" type="submit" value="Видалити"/>
     </form>
 </div>
 </body>

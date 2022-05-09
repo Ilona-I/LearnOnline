@@ -13,12 +13,12 @@
         <p th:if ="${session.currentUser}!=null" th:text="${'Login: '+ session.currentUser.login}"></p>
     </div>
     <nav class="contact">
-
-        <a  href="/userList">Користувачі</a>
-        <a th:if ="${session.currentUser}!=null" href="/index">Головна</a>
-        <a  href="/profile" >Мій профіль</a>
-        <a th:if ="${session.currentUser}!=null" href="/chatList">Чати</a>
+        <a href="/index">Головна</a>
+        <a href="/userList">Користувачі</a>
         <a class="active" href="/courseList" >Переглянути курси</a>
+        <a th:if ="${session.currentUser}!=null"  href="/profile" >Мій профіль</a>
+        <a th:if ="${session.currentUser}!=null" href="/chatList">Чати</a>
+        <a th:if ="${session.currentUser}==null" href="/logIn">Вхід</a>
         <a th:if ="${session.currentUser}==null" href="/signUp">Реєстрація</a>
         <a th:if ="${session.currentUser}!=null"  href="/logout">Вихід</a>
     </nav>
