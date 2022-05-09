@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/edit.css">
+    <link rel="stylesheet" href="/r.css">
     <title>Тест</title>
 </head>
 <body>
@@ -12,6 +13,7 @@
     </div>
     <nav class="contact">
         <a  href="/userList">Користувачі</a>
+        <a  href="/profile" >Мій профіль</a>
         <a th:if ="${session.currentUser}!=null" href="/index">Головна</a>
         <a th:if ="${session.currentUser}!=null" href="/chatList">Чати</a>
         <a class="active" href="/courseList" >Переглянути курси</a>
@@ -20,34 +22,27 @@
         <a th:if ="${session.currentUser}!=null"  href="/logout">Вихід</a>
     </nav>
 </header>
-<form th:action="@{/saveCourse}" method="post">
-    <h1 class="b">Курси > Тест</h1>
+<h1 class="b">Курси > Тест</h1>
 
-    <a  href="/courseList?myCourses=true" class="b">Мої курси</a>
-    <a href="/courseList" class="m" class="b">Усі курси</a>
+<a  href="/courseList?myCourses=true" class="b">Мої курси</a>
+<a href="/courseList" class="m" class="b">Усі курси</a>
+<div class="curs_88" th:if="${session.currentUser.login!=session.currentCourseTeacher.login}">
+    <p th:if="${session.currentTest.size()==0}">No tests</p>
+    <form th:action="@{/test}" method="post">
+        <div th:each="test : ${session.currentTest}" >
 
-    <div th:each="course: ${session.courseList}" class="curs_5">
-
-
-        <div th:if="${session.currentUser.login!=session.currentCourseTeacher.login}">
-        <p th:if="${session.currentTest.size()==0}">No tests</p>
-        <form th:action="@{/test}" method="post">
-            <div th:each="test : ${session.currentTest}">
-                <input type="hidden" name="courseId" th:value="${test.key.courseId}"/>
-                <input type="hidden" name="question" th:value="${test.key.id}"/>
-                <h4  th:text="${test.key.text}"></h4>
-                <div th:each="answer:${test.value}">
-                    <input type="radio" th:name="'answer'+${test.key.id}" th:value="${answer.id}" th:id="${answer.id}">
-                    <label th:for="${answer.id}" th:text="${answer.text}"></label>
-                </div>
+            <input type="hidden" name="courseId" th:value="${test.key.courseId}"/>
+            <input type="hidden" name="question" th:value="${test.key.id}"/>
+            <h4  th:text="${test.key.text}"></h4>
+            <div th:each="answer:${test.value}">
+                <input type="radio" th:name="'answer'+${test.key.id}" th:value="${answer.id}" th:id="${answer.id}">
+                <label th:for="${answer.id}" th:text="${answer.text}"></label>
             </div>
-            <button class="activeee" th:if="${session.currentTest.size()>0}" type="submit">Обрати</button>
-        </form>
-        </div>
-        </div>
-</form>
 
-    </div>
+        </div>
+        <button class="activeee" th:if="${session.currentTest.size()>0}" type="submit">Обрати</button>
+    </form>
+
     <div th:if="${session.currentUser.login==session.currentCourseTeacher.login}">
         <div th:each="test : ${session.currentTest}">
             <h4 th:text="${test.key.text}"></h4>
@@ -56,23 +51,23 @@
                 <form th:action="@{/removeAnswer}" method="post">
                     <input type="hidden" name="page" th:value="'test?courseId='+${test.key.courseId}"/>
                     <input type="hidden" name="answerId" th:value="${answer.id}">
-                    <button type="submit" class="activ">Видалити питання</button>
-                    <a th:href="'/editTest?questionId='+${test.key.id}" class="activess">Редагувати блок</a>
+                    <button class="activ" type="submit">Видалити питання</button>
                 </form>
             </div>
+            <a class="activess" th:href="'/editTest?questionId='+${test.key.id}">Редагувати блок</a>
         </div>
+        <form th:action="@{/removeTest}" method="post">
+            <input type="hidden" name="courseId" th:value="${test.key.courseId}"/>
+            <input type="hidden" name="questionId" th:value="${test.key.id}">
+            <button class="activ" type="submit">Видалити тест</button>
+        </form>
+
     </div>
-        </div>
-    </div>
-
-
-
-<form th:action="@{/removeTest}" method="post">
-    <input type="hidden" name="courseId" th:value="${test.key.courseId}"/>
-    <input type="hidden" name="questionId" th:value="${test.key.id}">
-        <a class="activess" href="/editTest">Додати питання</a>
-    <button type="submit" class="activ">Видалити тест</button>
-</form>
+    <a class="activess" href="/editTest">Додати питання</a>
+</div>
 
 </body>
 </html>
+
+
+
