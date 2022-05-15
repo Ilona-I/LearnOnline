@@ -2,10 +2,28 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Mark</title>
+    <link rel="stylesheet" href="/edit.css">
+    <title>Оцінка</title>
 </head>
 <body>
-    <h1>Mark</h1>
+<header class="f1">
+    <div class="wrap-logo">
+        <a href="/index" class="logo">LearnOnline</a>
+    </div>
+    <nav class="contact">
+        <a href="/index">Головна</a>
+        <a href="/userList">Користувачі</a>
+        <a class="active" href="/courseList" >Переглянути курси</a>
+        <a th:if ="${session.currentUser}!=null"  href="/profile" >Мій профіль</a>
+        <a th:if ="${session.currentUser}!=null" href="/chatList">Чати</a>
+        <a th:if ="${session.currentUser}==null" href="/logIn">Вхід</a>
+        <a th:if ="${session.currentUser}==null" href="/signUp">Реєстрація</a>
+        <a th:if ="${session.currentUser}!=null"  href="/logout">Вихід</a>
+    </nav>
+</header>
+<div style="margin-left: 100px">
+    <h1>Оцінка</h1>
     <h4 th:text="${session.userMark}+'/'+${session.maxMark}"></h4>
+</div>
 </body>
 </html>

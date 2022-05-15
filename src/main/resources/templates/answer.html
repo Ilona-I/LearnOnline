@@ -2,15 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/edit.css">
     <title>Add answer</title>
 </head>
 <body>
-
+<header class="f1">
+    <div class="wrap-logo">
+        <a href="/index" class="logo">LearnOnline</a>
+    </div>
+    <nav class="contact">
+        <a href="/index">Головна</a>
+        <a href="/userList">Користувачі</a>
+        <a class="active" href="/courseList" >Переглянути курси</a>
+        <a th:if ="${session.currentUser}!=null"  href="/profile" >Мій профіль</a>
+        <a th:if ="${session.currentUser}!=null" href="/chatList">Чати</a>
+        <a th:if ="${session.currentUser}==null" href="/logIn">Вхід</a>
+        <a th:if ="${session.currentUser}==null" href="/signUp">Реєстрація</a>
+        <a th:if ="${session.currentUser}!=null"  href="/logout">Вихід</a>
+    </nav>
+</header>
+<div style="margin-left: 100px; margin-top: 50px;">
+    <h3>Додати відповідь до запитання</h3>
     <form th:action="@{/editAnswer}" method="post">
         <input type="hidden" name="questionId" th:value="${session.currentQuestionId}">
         <input type="text" name="text">
         <input type="number" name="mark" min="0">
-        <button type="submit">Save answer</button>
+        <button class="activ" type="submit">Зберегти відповідь</button>
     </form>
+</div>
+
 </body>
 </html>

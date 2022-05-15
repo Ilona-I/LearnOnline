@@ -72,6 +72,9 @@ public class TestController {
             int id = Integer.parseInt(questionId);
             session.setAttribute("currentQuestion", testService.getQuestion(id));
             session.setAttribute("currentPossibleAnswers", testService.getPossibleAnswers(id));
+        } else {
+            session.removeAttribute("currentQuestion");
+            session.removeAttribute("currentPossibleAnswers");
         }
         return "editTest";
     }

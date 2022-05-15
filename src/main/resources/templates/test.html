@@ -25,6 +25,7 @@
 
 <a  href="/courseList?myCourses=true" class="b">Мої курси</a>
 <a href="/courseList" class="m b">Усі курси</a>
+<div style="margin-left: 100px;">
     <div class="curs_88" th:if="${session.currentUser.login!=session.currentCourseTeacher.login}">
         <p th:if="${session.currentTest.size()==0}">No tests</p>
         <form th:action="@{/test}" method="post">
@@ -58,9 +59,9 @@
                 <button class="activ" type="submit">Видалити тест</button>
             </form>
         </div>
-        <a class="activess" href="/editTest">Редагувати тест</a>
+        <a class="activess" href="/editTest">Додати тест</a>
     </div>
-
+</div>
 </body>
 </html>
 

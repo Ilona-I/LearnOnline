@@ -21,29 +21,26 @@
         <a th:if ="${session.currentUser}!=null"  href="/logout">Вихід</a>
     </nav>
 </header>
-<form th:action="@{/saveCourse}" method="post">
-    <h1 class="b">Курси > Редагування блоку</h1>
 
+    <h1 class="b">Курси > Редагування блоку</h1>
     <a  href="/courseList?myCourses=true" class="b">Мої курси</a>
-    <a href="/courseList" class="m" class="b">Усі курси</a>
-    </div>
-    <div th:each="course: ${session.courseList}" class="curs_5">
-        <form th:action="@{/editQuestion}" method="post">
-            <h4>Питання</h4>
-            <input type="hidden" name="courseId" th:value="${session.currentCourse.id}">
-            <input type="hidden" name="questionId" th:value="${session.currentQuestion!=null?session.currentQuestion.id:''}"/>
-            <input class="f" type="text" name="questionText" th:value="${session.currentQuestion!=null?session.currentQuestion.text:''}"/><br>
-            <button type="submit" class="activv">Зберегти питання</button>
-        </form>
+    <a href="/courseList" class="m b">Усі курси</a>
+<div style="margin-left: 100px;">
+    <form th:action="@{/editQuestion}" method="post">
+        <h4>Питання</h4>
+        <input type="hidden" name="courseId" th:value="${session.currentCourse.id}">
+        <input type="hidden" name="questionId" th:value="${session.currentQuestion!=null?session.currentQuestion.id:''}"/>
+        <input class="f" type="text" name="questionText" th:value="${session.currentQuestion!=null?session.currentQuestion.text:''}"/><br>
+        <button type="submit" class="activv">Зберегти питання</button>
+    </form>
 
         <div th:if="${session.currentPossibleAnswers!=null}" th:each="answer:${session.currentPossibleAnswers}">
             <form th:action="@{/editAnswer}" method="post">
                 <input type="hidden" name="questionId" th:value="${session.currentQuestion.id}">
                 <input type="hidden" name="answerId" th:value="${answer.id}">
-                <input class="f" type="text" name="text" th:value="${answer.text}"><br>
+                <input class="f" type="text" name="text" th:value="${answer.text}">
+                <br>
                 <label>Оцінка: <input class="ff" type="number" name="mark" min="0" th:value="${answer.mark}"/></label>
-
-
                 <button type="submit" class="acv">Зберегти відповідь</button>
             </form>
             <form th:action="@{/removeAnswer}" method="post">
@@ -52,12 +49,9 @@
                 <button type="submit" class="act">Видалити відповідь</button>
             </form>
         </div>
-    </div>
-</form>
-
         <div th:if="${session.currentQuestion!=null}">
             <a th:href="'/answer?questionId='+${session.currentQuestion.id}" class="acttiv">Додати відповідь</a>
         </div>
-
+</div>
 </body>
 </html>
